@@ -1,0 +1,11 @@
+*.class
+*.project
+*.orig
+**/.classpath
+**/.factorypath
+.settings
+
+bin/
+build/
+target/
+metamodel/
