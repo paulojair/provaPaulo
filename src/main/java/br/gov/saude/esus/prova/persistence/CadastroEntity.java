@@ -6,12 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @Entity
-@Getter
-@Setter
 public class CadastroEntity {
 
 	@Id
@@ -23,4 +18,29 @@ public class CadastroEntity {
 
 	@Column
 	private String descricao;
+
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitulo() {
+		return this.titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getDescricao() {
+		return this.descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 }
