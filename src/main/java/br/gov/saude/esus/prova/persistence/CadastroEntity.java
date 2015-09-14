@@ -17,6 +17,9 @@ public class CadastroEntity {
 	private String titulo;
 
 	@Column
+	private String autor;
+	
+	@Column
 	private String descricao;
 
 	public Long getId() {
@@ -33,6 +36,14 @@ public class CadastroEntity {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+	
+	public String getAutor() {
+		return this.autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
 	}
 
 	public String getDescricao() {

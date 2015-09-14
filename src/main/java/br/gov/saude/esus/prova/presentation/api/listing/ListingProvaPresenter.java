@@ -9,5 +9,7 @@ public interface ListingProvaPresenter extends ProvaPresenter {
 	void editar(Long idToEdit);
 
 	void adicionar();
+	
+	void buscar(String titleToSearch);
 
 }

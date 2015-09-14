@@ -6,6 +6,7 @@ import br.gov.saude.esus.prova.common.api.exception.GrupoValidacaoException;
 import br.gov.saude.esus.prova.common.api.exception.ValidacaoException;
 import br.gov.saude.esus.prova.presentation.api.detail.ex1.CadastroDetailProvaPresenter;
 import br.gov.saude.esus.prova.presentation.api.detail.ex1.CadastroDetailProvaView;
+import br.gov.saude.esus.prova.presenter.impl.CadastroDetailProvaPresenterImpl;
 
 import com.vaadin.server.AbstractErrorMessage.ContentMode;
 import com.vaadin.server.ErrorMessage.ErrorLevel;
@@ -24,6 +25,7 @@ import com.vaadin.ui.VerticalLayout;
 public class CadastroDetailProvaViewImpl extends ProvaViewImpl<CadastroDetailProvaPresenter> implements CadastroDetailProvaView {
 
 	private TextField fieldTitulo;
+	private TextField fieldAutor;
 	private TextArea fieldDescricao;
 
 	public CadastroDetailProvaViewImpl(CadastroDetailProvaPresenter presenter) {
@@ -41,6 +43,7 @@ public class CadastroDetailProvaViewImpl extends ProvaViewImpl<CadastroDetailPro
 		content.setMargin(true);
 
 		content.addComponent(this.fieldTitulo = new TextField("Título"));
+		content.addComponent(this.fieldAutor = new TextField("Autor"));
 		content.addComponent(this.fieldDescricao = new TextArea("Descrição"));
 		Button buttonSalvar = new Button("Salvar");
 
@@ -55,6 +58,20 @@ public class CadastroDetailProvaViewImpl extends ProvaViewImpl<CadastroDetailPro
 		});
 
 		content.addComponent(buttonSalvar);
+		
+		Button buttonCancelar = new Button("Cancelar");
+
+		buttonCancelar.setIcon(FontAwesome.SIGN_OUT);
+
+		buttonCancelar.addClickListener(new ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				CadastroDetailProvaViewImpl.this.presenter.cancelar();			
+			}
+		});
+
+		content.addComponent(buttonCancelar);
 
 		panel.setContent(content);
 
@@ -65,6 +82,7 @@ public class CadastroDetailProvaViewImpl extends ProvaViewImpl<CadastroDetailPro
 	public CadastroForm fillOut() {
 		CadastroForm form = new CadastroForm();
 		form.setTitulo(this.fieldTitulo.getValue());
+		form.setAutor(this.fieldAutor.getValue());
 		form.setDescricao(this.fieldDescricao.getValue());
 		return form;
 	}
@@ -72,6 +90,7 @@ public class CadastroDetailProvaViewImpl extends ProvaViewImpl<CadastroDetailPro
 	@Override
 	public void fillIn(CadastroForm form) {
 		this.fieldTitulo.setValue(form.getTitulo());
+		this.fieldAutor.setValue(form.getAutor());
 		this.fieldDescricao.setValue(form.getDescricao());
 	}
 

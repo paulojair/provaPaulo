@@ -10,6 +10,8 @@ public interface CadastroService {
 	void salvar(CadastroForm form) throws ValidacaoException;
 
 	List<CadastroForm> listAll();
+	
+	List<CadastroForm> listSearched(String titleToSearch);
 
 	void remover(Long idToRemove);
 

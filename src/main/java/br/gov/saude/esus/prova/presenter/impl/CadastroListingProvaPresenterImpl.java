@@ -52,4 +52,13 @@ public class CadastroListingProvaPresenterImpl extends ProvaPresenterImpl<Cadast
 		this.refresh();
 	}
 
+	@Override
+	public void buscar(String titleToSearch) {
+		if((titleToSearch == null) || titleToSearch.trim().isEmpty()){
+			this.refresh();
+		} else{
+			this.view.setListingItems(this.cadastroService.listSearched(titleToSearch));
+		}
+	}
+
 }

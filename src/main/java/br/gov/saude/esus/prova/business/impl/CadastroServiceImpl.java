@@ -35,6 +35,7 @@ public class CadastroServiceImpl implements CadastroService {
 		}
 
 		entity.setTitulo(form.getTitulo());
+		entity.setAutor(form.getAutor());
 		entity.setDescricao(form.getDescricao());
 
 		this.em.persist(entity);
@@ -48,6 +49,7 @@ public class CadastroServiceImpl implements CadastroService {
 
 		form.setId(idToLoad);
 		form.setTitulo(entity.getTitulo());
+		form.setAutor(entity.getAutor());
 		form.setDescricao(entity.getDescricao());
 
 		return form;
@@ -61,7 +63,12 @@ public class CadastroServiceImpl implements CadastroService {
 	@Override
 	public List<CadastroForm> listAll(){
 		QCadastroEntity alias = QCadastroEntity.cadastroEntity;
-		return new JPAQuery(this.em).from(alias).list(Projections.bean(CadastroForm.class, alias.id.as("id"), alias.titulo.as("titulo"), alias.descricao.as("descricao")));
+		return new JPAQuery(this.em).from(alias).list(Projections.bean(CadastroForm.class, alias.id.as("id"), alias.titulo.as("titulo"),alias.autor.as("autor"), alias.descricao.as("descricao")));
+	}
+	
+	public List<CadastroForm> listSearched(String titleToSearch){
+		QCadastroEntity alias = QCadastroEntity.cadastroEntity;
+		return new JPAQuery(this.em).from(alias).where(alias.titulo.eq(titleToSearch)).list(Projections.bean(CadastroForm.class, alias.id.as("id"), alias.titulo.as("titulo"),alias.autor.as("autor"), alias.descricao.as("descricao")));
 	}
 
 }

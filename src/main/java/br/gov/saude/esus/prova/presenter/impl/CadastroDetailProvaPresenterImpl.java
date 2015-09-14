@@ -37,5 +37,10 @@ public class CadastroDetailProvaPresenterImpl extends ProvaPresenterImpl<Cadastr
 			this.view.showValidacoes(e);
 		}
 	}
+	
+	public void cancelar() {
+		this.view.notifica("Sucesso!", "nada foi alterado");
+		this.ui.handlePresenter(new CadastroListingProvaPresenterImpl(this.ui));
+	}
 
 }

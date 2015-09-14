@@ -16,6 +16,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.Table.ColumnGenerator;
 import com.vaadin.ui.VerticalLayout;
 
@@ -45,8 +46,8 @@ public class CadastroListingProvaViewImpl extends ProvaViewImpl<CadastroListingP
 		this.table.setImmediate(true);
 		this.beanItemContainer = new BeanItemContainer<CadastroForm>(CadastroForm.class);
 		this.table.setContainerDataSource(this.beanItemContainer);
-		this.table.setVisibleColumns("id", "titulo");
-		this.table.setColumnHeaders("Id", "Título");
+		this.table.setVisibleColumns("id", "titulo", "autor");
+		this.table.setColumnHeaders("Id", "Título", "Autor");
 		this.table.addGeneratedColumn("Ações", this);
 		content.addComponent(this.table);
 
@@ -63,7 +64,26 @@ public class CadastroListingProvaViewImpl extends ProvaViewImpl<CadastroListingP
 		});
 
 		content.addComponent(buttonAdicionar);
+		
+		///*
+		final TextField fieldTituloBusca = new TextField("Título para busca");
+		content.addComponent(fieldTituloBusca);
+		
+		Button buttonBuscar = new Button("Buscar por Título");
+		 
+		buttonBuscar.setIcon(FontAwesome.SEARCH);
 
+		buttonBuscar.addClickListener(new ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				CadastroListingProvaViewImpl.this.presenter.buscar(fieldTituloBusca.getValue());
+			}
+		});
+
+		content.addComponent(buttonBuscar);
+		//*/
+		
 		panel.setContent(content);
 
 		this.addComponent(panel);

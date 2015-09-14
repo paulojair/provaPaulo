@@ -5,7 +5,9 @@ public class CadastroForm {
 
 	private Long id;
 	private String titulo;
+	private String autor;
 	private String descricao;
+	
 
 	public Long getId() {
 		return this.id;
@@ -22,6 +24,15 @@ public class CadastroForm {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+	
+	public String getAutor() {
+		return this.autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
 
 	public String getDescricao() {
 		return this.descricao;
